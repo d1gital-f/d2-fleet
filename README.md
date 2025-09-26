@@ -107,7 +107,7 @@ by the Flux source-controller running on clusters to authenticate with GitHub Co
 to pull the OCI Artifacts.
 
 The Flux bot account must have read access to the `d2-fleet`, `d2-infra` and `d2-apps` repositories,
-and the GitHub Personal Access Token (PAT) should grant read-only access to the GitHub Container Registry
+and the GitHub [Personal Access Token (classic)](https://github.com/settings/tokens) (PAT) should grant read-only access to the GitHub Container Registry
 by selecting the `read:packages` scope.
 
 ### Bootstrap a Kubernetes Cluster
