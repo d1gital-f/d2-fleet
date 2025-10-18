@@ -36,6 +36,15 @@ spec:
         chartRef:
           kind: OCIRepository
           name: flux-operator
+        install:
+          strategy:
+            name: RetryOnFailure
+            retryInterval: 3m
+        upgrade:
+          force: true
+          strategy:
+            name: RetryOnFailure
+            retryInterval: 3m
         values:
           multitenancy:
             enabled: true

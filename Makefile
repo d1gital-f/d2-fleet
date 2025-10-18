@@ -8,8 +8,8 @@
 SHELL = /usr/bin/env bash -o pipefail
 .SHELLFLAGS = -ec
 
-REPOSITORY ?= https://github.com/controlplaneio-fluxcd/d2-fleet
-REGISTRY ?= ghcr.io/controlplaneio-fluxcd/d2-fleet
+REPOSITORY ?= https://github.com/d1gital-f/d2-fleet
+REGISTRY ?= ghcr.io/d1gital-f/d2-fleet
 
 .PHONY: all
 all: push bootstrap-staging
@@ -30,24 +30,6 @@ push: ## Push the Kubernetes manifests to Github Container Registry.
 
 ##@ Flux
 
-bootstrap-staging: ## Deploy Flux Operator on the staging Kubernetes cluster.
-	@test $${GITHUB_TOKEN?Environment variable not set}
-
-	helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
-	  --namespace flux-system \
-	  --create-namespace \
-	  --set multitenancy.enabled=true \
-	  --wait
-
-	kubectl -n flux-system create secret docker-registry ghcr-auth \
-	  --docker-server=ghcr.io \
-	  --docker-username=flux \
-	  --docker-password=$$GITHUB_TOKEN
-
-	kubectl apply -f clusters/staging/flux-system/flux-instance.yaml
-
-	kubectl -n flux-system wait fluxinstance/flux --for=condition=Ready --timeout=5m
-
 bootstrap-production: ## Deploy Flux Operator on the production Kubernetes cluster.
 	@test $${GITHUB_TOKEN?Environment variable not set}
 
@@ -62,7 +44,7 @@ bootstrap-production: ## Deploy Flux Operator on the production Kubernetes clust
 	  --docker-username=flux \
 	  --docker-password=$$GITHUB_TOKEN
 
-	kubectl apply -f clusters/prod-eu/flux-system/flux-instance.yaml
+	kubectl apply -f clusters/fb-mgmt-01/flux-system/flux-instance.yaml
 
 	kubectl -n flux-system wait fluxinstance/flux --for=condition=Ready --timeout=5m
 
