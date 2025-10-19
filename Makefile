@@ -30,7 +30,7 @@ push: ## Push the Kubernetes manifests to Github Container Registry.
 
 ##@ Flux
 
-bootstrap-production: ## Deploy Flux Operator on the production Kubernetes cluster.
+bootstrap-mgmt: ## Deploy Flux Operator on the Hub Kubernetes cluster.
 	@test $${GITHUB_TOKEN?Environment variable not set}
 
 	helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
