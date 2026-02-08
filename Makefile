@@ -8,8 +8,8 @@
 SHELL = /usr/bin/env bash -o pipefail
 .SHELLFLAGS = -ec
 
-REPOSITORY ?= https://github.com/controlplaneio-fluxcd/d2-fleet
-REGISTRY ?= ghcr.io/controlplaneio-fluxcd/d2-fleet
+REPOSITORY ?= https://github.com/d1gital-f/d2-fleet
+REGISTRY ?= ghcr.io/d1gital-f/d2-fleet
 
 .PHONY: all
 all: push bootstrap-staging
@@ -41,7 +41,7 @@ bootstrap-staging: ## Deploy Flux Operator on the staging Kubernetes cluster.
 
 	kubectl -n flux-system create secret docker-registry ghcr-auth \
 	  --docker-server=ghcr.io \
-	  --docker-username=flux \
+	  --docker-username=d1gital-f \
 	  --docker-password=$$GITHUB_TOKEN
 
 	kubectl apply -f clusters/staging/flux-system/flux-instance.yaml
@@ -59,7 +59,7 @@ bootstrap-production: ## Deploy Flux Operator on the production Kubernetes clust
 
 	kubectl -n flux-system create secret docker-registry ghcr-auth \
 	  --docker-server=ghcr.io \
-	  --docker-username=flux \
+	  --docker-username=d1gital-f \
 	  --docker-password=$$GITHUB_TOKEN
 
 	kubectl apply -f clusters/prod-eu/flux-system/flux-instance.yaml
@@ -78,7 +78,7 @@ bootstrap-update: ## Deploy Flux Operator on the image update automation Kuberne
 
 	kubectl -n flux-system create secret docker-registry ghcr-auth \
 	  --docker-server=ghcr.io \
-	  --docker-username=flux \
+	  --docker-username=d1gital-f \
 	  --docker-password=$$GITHUB_TOKEN
 
 	kubectl -n flux-system create secret generic github-auth \
