@@ -24,7 +24,7 @@ spec:
     kind: OCIRepository
     url: "oci://ghcr.io/d1gital-f/d2-fleet"
     ref: "latest"
-    path: "clusters/staging"
+    path: "clusters/unix-laptop-staging"
     pullSecret: "ghcr-auth"
   kustomize:
     patches:
