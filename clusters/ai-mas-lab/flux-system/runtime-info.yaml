@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flux-runtime-info
+  namespace: flux-system
+  labels:
+    toolkit.fluxcd.io/runtime: "true"
+data:
+  ARTIFACT_TAG: latest
+  ENVIRONMENT: production
+  CLUSTER_NAME: ai-mas-lab
+  ARTIFACT_SUBJECT_WORKFLOW: push-artifact
+  ARTIFACT_SUBJECT_GIT_REF: refs/heads/main
